@@ -1,10 +1,6 @@
 {
-  "name": "lib-math",
-  "version": "1.0.0",
-  "directories": {
-    "doc": "docs",
-    "lib": "lib"
-  },
+  "name": "rv-lib-math",
+  "version": "1.2.0",
   "author": {
     "email": "venancio-rv@proton.me",
     "name": "Rafael Venâncio Development"

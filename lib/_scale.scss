@@ -1,0 +1,10 @@
+@use 'sass:math';
+
+
+@function scale($value, $weight, $range_min, $range_max) {
+  $interval: if(($weight >= 0), ($range_max - $value), ($value - $range_min));
+  $scaled: math.div(($weight * $interval), 100);
+  $value: ($value + $scaled);
+
+  @return $value;
+}
