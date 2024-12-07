@@ -1,0 +1,36 @@
+name: Publish to npm
+
+on:
+  push:
+    branches:
+      - master  # Publica apenas na branch main (altere se necessário)
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Verifica o código
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Configura o Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+
+      # Configura o npm com o token secreto
+      - name: Authenticate with npm
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      # Instala dependências e roda testes (opcional)
+      - name: Install dependencies
+        run: npm install
+
+      # Publica no npm
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
